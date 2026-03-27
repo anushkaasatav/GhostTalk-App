@@ -1,10 +1,10 @@
-# GhostTalk – Privacy-First Snap & Chat Application
+# GhostTalk – Privacy-First Chat & Snap Application
 
 ## Overview
 
-GhostTalk is a terminal-based social media application focused on privacy-first communication. It allows users to chat in real time, send temporary image snaps, and post messages.
+GhostTalk is a privacy-focused chat and snap application with a C backend and a Flutter web frontend. The project supports real-time communication, temporary image sharing, wall posting, and browser-based interaction.
 
-This project demonstrates system-level programming concepts using C, including socket programming, multithreading, and file handling.
+The backend is implemented using C, TCP sockets, pthreads, and file handling. The frontend is built with Flutter Web and provides the user interface for login, chat, snaps, and wall posts.
 
 ---
 
@@ -13,69 +13,90 @@ This project demonstrates system-level programming concepts using C, including s
 * Real-time chat using TCP sockets
 * Temporary image sharing with auto-deletion
 * Multi-client handling using pthreads
-* Wall post system
+* Wall post functionality
+* Browser-based frontend using Flutter Web
 * Privacy-focused design with temporary storage
-
----
-
-## System Architecture
-
-Client → TCP Socket → Server (C + Threads) → File System
-
-* Clients communicate with the server using TCP sockets
-* The server handles multiple clients using threads
-* Snap data is stored temporarily and deleted automatically
 
 ---
 
 ## Tech Stack
 
-* Language: C
+* Backend: C
+* Frontend: Dart / Flutter Web
 * Networking: TCP sockets
 * Concurrency: POSIX threads (pthreads)
-* File Handling: Linux file system
+* File Handling: Linux file system / WSL
 
 ---
 
 ## Project Structure
 
-* server.c
-* chat_handler.c
-* snap_handler.c
-* utils.c
-* Makefile
-* run.sh
-* GhostTalk_Report.pdf
-* README.md
+* `server.c`
+* `chat_handler.c`
+* `snap_handler.c`
+* `utils.c`
+* `Makefile`
+* `run.sh`
+* `lib/`
+* `web/`
+* `pubspec.yaml`
+* `pubspec.lock`
+* `Ghost talk report.pdf`
+* `README.md`
 
 ---
 
 ## How to Run
 
-1. Compile the project:
-   make
+### 1. Start the backend server in WSL
 
-2. Run the server:
-   ./server
+Open WSL and run:
 
-3. Run the client (if implemented separately):
-   ./client
+```bash
+cd /mnt/c/Users/anush/OneDrive/Desktop/ghosttalk_web/backend
+./server
+```
+
+If needed, compile first:
+
+```bash
+cd /mnt/c/Users/anush/OneDrive/Desktop/ghosttalk_web/backend
+make
+./server
+```
+
+### 2. Start the frontend in PowerShell
+
+Open a new PowerShell window and run:
+
+```powershell
+cd "C:\Users\anush\OneDrive\Desktop\ghosttalk_web\frontend\ghosttalk_app"
+flutter pub get
+flutter run -d chrome
+```
+
+### 3. Use the application
+
+* Keep the backend server running in WSL
+* Launch the Flutter web app from PowerShell
+* Open the app in Chrome
+* Log in and test chat, snap, and wall post features
 
 ---
 
-## Challenges Faced
+## Notes
 
-* Handling multiple clients concurrently
-* Managing concurrent file access
-* Implementing safe auto-deletion
-* Synchronizing communication between clients
+* Backend runs in WSL
+* Frontend runs in PowerShell / Chrome
+* The project was tested locally with the backend server running on port 8080
 
 ---
 
 ## Project Report
 
-Detailed explanation is available in:
-GhostTalk_Report.pdf
+Detailed explanation and screenshots are available in:
+
+`Ghost talk report.pdf`
 
 ---
 
@@ -88,7 +109,7 @@ MS Computer Science – Binghamton University
 
 ## Future Improvements
 
-* Graphical user interface
+* Better repository structure for backend and frontend separation
 * End-to-end encryption
 * Database integration
 * Improved scalability
