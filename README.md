@@ -2,18 +2,18 @@
 
 ## Overview
 
-GhostTalk is a terminal-based social media application focused on privacy-first communication. It allows users to chat in real time, send temporary image snaps, and post messages to a personal wall.
+GhostTalk is a terminal-based social media application focused on privacy-first communication. It allows users to chat in real time, send temporary image snaps, and post messages.
 
-This project demonstrates low-level system programming concepts using C, including socket programming, concurrency, and file handling.
+This project demonstrates system-level programming concepts using C, including socket programming, multithreading, and file handling.
 
 ---
 
 ## Features
 
 * Real-time chat using TCP sockets
-* Temporary image sharing (auto-deleted after 10 seconds)
+* Temporary image sharing with auto-deletion
 * Multi-client handling using pthreads
-* Wall post system for users
+* Wall post system
 * Privacy-focused design with temporary storage
 
 ---
@@ -22,10 +22,9 @@ This project demonstrates low-level system programming concepts using C, includi
 
 Client → TCP Socket → Server (C + Threads) → File System
 
-* Clients communicate with the server through TCP sockets
+* Clients communicate with the server using TCP sockets
 * The server handles multiple clients using threads
-* Snap images are stored temporarily in `/data/snaps`
-* Files are automatically deleted after a fixed duration
+* Snap data is stored temporarily and deleted automatically
 
 ---
 
@@ -40,19 +39,12 @@ Client → TCP Socket → Server (C + Threads) → File System
 
 ## Project Structure
 
-GhostTalk-App/
-
-* backend/
-
-  * src/
-
-    * server.c
-    * chat_handler.c
-    * snap_handler.c
-    * post_handler.c
-    * utils.c
-  * Makefile
-  * run.sh
+* server.c
+* chat_handler.c
+* snap_handler.c
+* utils.c
+* Makefile
+* run.sh
 * GhostTalk_Report.pdf
 * README.md
 
@@ -60,32 +52,29 @@ GhostTalk-App/
 
 ## How to Run
 
-1. Navigate to backend folder:
-   cd backend
-
-2. Compile the project:
+1. Compile the project:
    make
 
-3. Run the server:
+2. Run the server:
    ./server
 
-4. Run the client (in another terminal):
+3. Run the client (if implemented separately):
    ./client
 
 ---
 
 ## Challenges Faced
 
-* Handling multiple clients concurrently using threads
+* Handling multiple clients concurrently
 * Managing concurrent file access
-* Implementing safe auto-deletion of files
-* Synchronizing communication between client and server
+* Implementing safe auto-deletion
+* Synchronizing communication between clients
 
 ---
 
 ## Project Report
 
-Detailed explanation is available here:
+Detailed explanation is available in:
 GhostTalk_Report.pdf
 
 ---
